@@ -14,7 +14,7 @@ private int square;
 private int sqID;
 private int number;
 private boolean preSet;
-private int possibleNum;
+private int testNum;
 
 /**
  * Creates a new Square object, representing one of the square cells in the sudoku puzzle.
@@ -32,7 +32,7 @@ public Square(int sRow, int sColumn, int sSquare, int sSqID)
 	sqID = sSqID;
 	number = 0;
 	preSet = false;
-	possibleNum=0;
+	testNum=0;
 	
 }
 
@@ -46,9 +46,7 @@ public void setValAndPreset(int val) {
 		number = val;
 		preSet = true;
 	}
-	else {
-		System.out.println("Please enter a number between 1 and 9.");
-	}
+	
 }
 public void setVal(int val) {
 	if (val>0 && val<10) {
@@ -110,5 +108,18 @@ public String getAll() {
 public String getNumAsStr() {
 	String n = String.valueOf(number);
 	return n;
+}
+
+public boolean getPreSet() {
+	return preSet;
+}
+public int getTestNum() {
+	return testNum;
+}
+public void setTestNum(int i) {
+	testNum = i;
+}
+public void resetPreset() {
+	preSet = false;
 }
 }

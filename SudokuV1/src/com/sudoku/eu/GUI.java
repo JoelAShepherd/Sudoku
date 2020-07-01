@@ -1,61 +1,42 @@
 package com.sudoku.eu;
 
 
-import java.awt.GridBagConstraints;
-import java.awt.GridBagLayout;
-
 import javax.swing.JFrame;
-import javax.swing.JPanel;
-import javax.swing.JTextField;
+import javax.swing.JTable;
 import javax.swing.SwingUtilities;
 
 
 public class GUI {
-	JFrame frame = new JFrame();
-	JPanel panel = new JPanel();
-	JTextField jtf0 = new JTextField(2);
-	JTextField jtf1 = new JTextField(2);
-	JTextField jtf2 = new JTextField(2);
-	JTextField jtf3 = new JTextField(2);
-	JTextField jtf4 = new JTextField(2);
-	JTextField jtf5 = new JTextField(2);
-	JTextField jtf6 = new JTextField(2);
-	JTextField jtf7 = new JTextField(2);
-	JTextField jtf8 = new JTextField(2);
-	
+	private JFrame frame;
+	private JTable table;
 	
 	
 public GUI() {
-	
-	panel.setLayout(new GridBagLayout());
-	GridBagConstraints gbc = new GridBagConstraints();
-	
-	gbc.gridwidth = 1;
-	gbc.gridheight = 1; 
-	gbc.weightx = +1.;
-	gbc.ipadx = 1;
+	JFrame frame = new JFrame();
 	
 	
-	gbc.gridx = 0;
-	gbc.gridy = 0;
-	panel.add(jtf0, gbc);
+	String [][] data = {
+			{"0", "0", "0", "0", "0", "0", "0", "0", "0"},
+			{"0", "0", "0", "0", "0", "0", "0", "0", "0"},
+			{"0", "0", "0", "0", "0", "0", "0", "0", "0"},
+			{"0", "0", "0", "0", "0", "0", "0", "0", "0"},
+			{"0", "0", "0", "0", "0", "0", "0", "0", "0"},
+			{"0", "0", "0", "0", "0", "0", "0", "0", "0"},
+			{"0", "0", "0", "0", "0", "0", "0", "0", "0"},
+			{"0", "0", "0", "0", "0", "0", "0", "0", "0"},
+			{"0", "0", "0", "0", "0", "0", "0", "0", "0"}
+						
+	};
 	
-	gbc.gridx = 1;
-	gbc.gridy = 0;
-	panel.add(jtf1, gbc);
+	String [] columns = {"", "", "", "", "", "", "", "", ""};
+			
 	
-	gbc.gridx = 2;
-	gbc.gridy = 0;
-	panel.add(jtf2, gbc);
+	JTable table = new JTable(data, columns);
+	frame.setTitle("Sudoku Solver");
+	frame.setSize(300, 400);
 	
-	gbc.gridx = 0;
-	gbc.gridy = 1;
-	panel.add(jtf8);
+	table.setBounds(0, 0, 300, 300);
 	
-	
-	
-	frame.add(panel);
-	frame.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
 	frame.pack();
 	frame.setVisible(true);
 	

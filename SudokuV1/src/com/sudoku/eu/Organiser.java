@@ -5,13 +5,9 @@ import java.util.stream.Collectors;
 import javax.swing.JFrame;
 
 
-public class Organiser extends JFrame {
-	/**
-	 * 
-	 */
-	private static final long serialVersionUID = 1L;
+public class Organiser {
 	protected static ArrayList<Square> sList;
-	private int rRow;
+	private static int rRow;
 	
 	
 public static void main(String[] args) {
@@ -23,7 +19,6 @@ public static void main(String[] args) {
 	{
 		sList = new ArrayList<>();
 		createSquares();
-		puzzleCheck1();
 		printPuzzle();
 	}
 
@@ -80,7 +75,7 @@ public static void main(String[] args) {
 		return sList;
 	}
 	
-	public void printPuzzle() {
+	public static void printPuzzle() {
 		rRow = 1;
 		while (rRow<10) {
 			String c = sList.stream()
@@ -125,6 +120,28 @@ public static void main(String[] args) {
 	public Organiser getOrganiser() {
 		return this;
 	}
+	
+	public static boolean isNumeric(String strNum) {
+	    if (strNum == null) {
+	        return false;
+	    }
+	    try {
+	        double d = Double.parseDouble(strNum);
+	    } catch (NumberFormatException nfe) {
+	        return false;
+	    }
+	    return true;
+	}
+	
+	public static void clearPresets() {
+		for (Square s: sList) {
+			s.resetPreset();
+		}
+	}
+	public void solvePuzzle(ArrayList<Square> aList) {
+		
+	}
+	
 }
 
 
