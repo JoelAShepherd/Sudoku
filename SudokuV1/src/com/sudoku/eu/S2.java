@@ -56,12 +56,10 @@ public class S2 extends Organiser {
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
 		contentPane.setLayout(new BorderLayout(0, 3));
 		jf.setContentPane(contentPane);
-		Dimension d = new Dimension(1, 1);
-		
+				
 		contentPane.setLayout(new GridBagLayout());
 		GridBagConstraints c = new GridBagConstraints();
-		
-		
+			
 		
 		cell0 = new JTextField();
 		cell1 = new JTextField();
@@ -556,7 +554,11 @@ public class S2 extends Organiser {
 			@Override
 			public void actionPerformed(ActionEvent arg0) {
 				boolean numCheck = true;
-				clearPresets();
+				Organiser.main(null);
+				ArrayList<Square> newSList = getSList();
+				
+				//Checks the content of the cells. If values are valid, sets the values in the 
+				//cells to the number value in the equivalent square object.
 				for (JTextField j: fieldArray) {
 					j.setBackground(Color.WHITE);
 					if (numCheck) {
@@ -584,15 +586,20 @@ public class S2 extends Organiser {
 								}
 						String cellName = j.getName();
 						int cellNum = Integer.parseInt(cellName);
-						sList.get(cellNum).setValAndPreset(value);
-						SolvingAlg.solve();
-						
-						
-					
+						Square sq = newSList.get(cellNum);
+						sq.setValAndPreset(value);
 						}
-						
+				
 				}
+				
+				if (numCheck) {
+					ArrayList<Square> solvedList = new ArrayList<>(SolvingAlg.solve(newSList));
+					Organiser.printPuzzle(solvedList);
 				}
+				
+				}
+				
+				
 			
 		});
 	}

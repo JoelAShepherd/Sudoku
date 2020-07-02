@@ -6,20 +6,20 @@ import javax.swing.JFrame;
 
 
 public class Organiser {
-	protected static ArrayList<Square> sList;
+	public static ArrayList<Square> sList;
 	private static int rRow;
+	public static Organiser o;
 	
 	
 public static void main(String[] args) {
 	Organiser o = new Organiser();
-		
 }
 	
 	public Organiser()
 	{
 		sList = new ArrayList<>();
 		createSquares();
-		printPuzzle();
+		printPuzzle(sList);
 	}
 
 	public void createSquares() {
@@ -71,21 +71,20 @@ public static void main(String[] args) {
 		}
 		
 	}
-	public ArrayList<Square> getSList(){
+	public static ArrayList<Square> getSList(){
 		return sList;
 	}
 	
-	public static void printPuzzle() {
-		rRow = 1;
-		while (rRow<10) {
-			String c = sList.stream()
+	public static void printPuzzle(ArrayList<Square> listToSolve) {
+		rRow= 0;
+		while (rRow<9) {
+			String c = listToSolve.stream()
 				.filter(s -> s.getRow()==rRow)
 				.map(square -> square.getNumber())
 				.map(num -> String.valueOf(num))
 				.collect(Collectors.joining("  "));
 			System.out.println(c);
 			rRow++;
-						
 		}
 			
 		
@@ -117,8 +116,8 @@ public static void main(String[] args) {
 		return n;
 	}
 	
-	public Organiser getOrganiser() {
-		return this;
+	public static Organiser getOrganiser() {
+		return o;
 	}
 	
 	public static boolean isNumeric(String strNum) {
@@ -133,14 +132,12 @@ public static void main(String[] args) {
 	    return true;
 	}
 	
-	public static void clearPresets() {
+	public void clearPresets() {
 		for (Square s: sList) {
 			s.resetPreset();
 		}
 	}
-	public void solvePuzzle(ArrayList<Square> aList) {
-		
-	}
+	
 	
 }
 

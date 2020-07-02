@@ -7,30 +7,30 @@ public class SolvingAlg extends Organiser{
 	
 	
 	public SolvingAlg() {
-		
+		Organiser o = Organiser.getOrganiser();
 	
 	}
-	public static boolean checkRow(Square square, int t) {
+	public static boolean checkRow(ArrayList<Square> checkSqList, Square square, int t) {
 		ArrayList<Integer> cRowL = new ArrayList<>();
-		sList.stream().
+		checkSqList.stream().
 				filter(s -> s.getRow()==square.getRow())
 				.map(s -> s.getNumber())
 				.forEach(s -> cRowL.add(s));
 		boolean ans = cRowL.contains(t);
 		return ans;
 	}
-	public static boolean checkCol(Square square, int t) {
+	public static boolean checkCol(ArrayList<Square> checkSqList, Square square, int t) {
 		ArrayList<Integer> cColL = new ArrayList<>();
-		sList.stream().
+		checkSqList.stream().
 				filter(s -> s.getCol()==square.getCol())
 				.map(s -> s.getNumber())
 				.forEach(s -> cColL.add(s));
 		boolean ans = cColL.contains(t);
 		return ans;
 	}
-	public static boolean checkSquare(Square square, int t) {
+	public static boolean checkSquare(ArrayList<Square> checkSqList, Square square, int t) {
 		ArrayList<Integer> cSqL = new ArrayList<>();
-		sList.stream().
+		checkSqList.stream().
 				filter(s -> s.getSquare()==square.getSquare())
 				.map(s -> s.getNumber())
 				.forEach(s -> cSqL.add(s));
@@ -38,52 +38,73 @@ public class SolvingAlg extends Organiser{
 		return ans;
 	}
 	
-	public static boolean checkIfSolved() {
+	public static boolean checkIfSolved(ArrayList<Square> listToSolve) {
 		Integer int0 = 0;
 		ArrayList<Integer> cPuz = new ArrayList<>();
-		sList.stream()
+		listToSolve.stream()
 					.map(s -> s.getNumber())
 					.forEach(s -> cPuz.add(s));
 		boolean ans = cPuz.contains(int0);
 		return !ans;
 	}
 	
-	public static void solve() {
+	public static ArrayList<Square> solve(ArrayList<Square> list) {
+		ArrayList<Square> listToSolve = new ArrayList<>(list);
 		int i = 0;
-		if (i<sList.size()) {
-			if (sList.get(i).getPreSet() == true) {
+		int t = 0;
+		
+		while (i<81) { //start
+			boolean runDone = false;
+			if (listToSolve.get(i).getPreSet()) {
 				i++;
 			}
-			else{
-				int t = (sList.get(i).getTestNum()) + 1;
-				if (t<10) {
-					if (checkRow((sList.get(i)), t) == false &&
-					checkCol((sList.get(i)), t) == false &&
-					checkSquare((sList.get(i)), t) == false){
-					sList.get(i).setVal(t);
-					i++;
+			else {
+				int sqNum = listToSolve.get(i).getNumber();
+				t = sqNum;
+				t++;
+				while (t<10 && !runDone) {
+					boolean checkA = false;
+					boolean checkB = false;
+					boolean checkC = false;
+					
+					if (checkRow(listToSolve, (listToSolve.get(i)), t) == false) {
+						System.out.println("checkRow True");
+						checkA = true;
+					}
+					if (checkCol(listToSolve, (listToSolve.get(i)), t) == false) {
+						System.out.println("checkCol True");
+						checkB = true;
+					}
+					if (checkSquare(listToSolve, (listToSolve.get(i)), t) == false){
+						System.out.println("checkSquare True");
+						checkC = true;
+					}
+					if (checkA && checkB && checkC) {
+						listToSolve.get(i).setVal(t);
+						i++;
+						runDone = true;
+					}
+					else {
+						t++;
 					}
 				}
-				else {
-					sList.get(i).setTestNum(0);
+				if (t>9) {
+					listToSolve.get(i).setVal(0);
+					listToSolve.get(i).setTestNum(0);
 					int b = 1;
 					int checkIndex = i;
-					while (sList.get(checkIndex-1).getPreSet() == true) {
+					while (listToSolve.get(checkIndex-1).getPreSet()) {
 						checkIndex--;
 						b++;
-						}
+					}
 					i = i-b;
+					
 				}
 			}
 		}
-		else if (i == sList.size()) {
-			if(checkIfSolved() == true) {
-				printPuzzle();
-			}
-			else {
-				System.out.println("An error has occured.");
-			}
-		}
+		
+		return listToSolve;//end
+	
 	}
 }
 	
