@@ -312,6 +312,15 @@ public class S2 extends Organiser {
 		JLabel label = new JLabel("Enter the numbers to solve the puzzle!");
 		JButton button = new JButton("Solve");
 		
+		for (JTextField j: fieldArray) {
+		String jName = j.getName();
+		int jNum = Integer.parseInt(jName);
+		
+			if() {
+			
+		}
+		}
+		
 		int t = 2;
 		int l = 2;
 		int b = 2;
@@ -549,6 +558,7 @@ public class S2 extends Organiser {
 		
 		
 		
+		
 		button.addActionListener(new ActionListener() {
 				
 			@Override
@@ -561,6 +571,7 @@ public class S2 extends Organiser {
 				//cells to the number value in the equivalent square object.
 				for (JTextField j: fieldArray) {
 					j.setBackground(Color.WHITE);
+					
 					if (numCheck) {
 						String valAsStr = j.getText();
 						if (valAsStr.contentEquals("")) {

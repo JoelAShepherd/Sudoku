@@ -25,34 +25,34 @@ public static void main(String[] args) {
 	public void createSquares() {
 		int square = 0;
 		int count = 0;
-		for (int r=1; r<10; r++) {
-			for (int c=1; c<10; c++) {
-				if (r<4 && c<4) {
+		for (int r=0; r<9; r++) {
+			for (int c=0; c<9; c++) {
+				if (r<3 && c<3) {
+					square = 0;
+				}
+				else if (r<3 && c>2 && c<6){
 					square = 1;
 				}
-				else if (r<4 && c>3 && c<7){
+				else if (r<3 && c>5){
 					square = 2;
 				}
-				else if (r<4 && c>6){
+				else if (r>2 && r<6 && c<3){
 					square = 3;
 				}
-				else if (r>3 && r<7 && c<4){
+				else if (r>2 && r<6 && c>2 && c<6){
 					square = 4;
 				}
-				else if (r>3 && r<7 && c>3 && c<7){
+				else if (r>2 && r<6 && c>5){
 					square = 5;
 				}
-				else if (r>3 && r<7 && c>6){
+				else if (r>5 && c<3){
 					square = 6;
 				}
-				else if (r>6 && c<4){
+				else if (r>5 && c>2 && c<2){
 					square = 7;
 				}
-				else if (r>6 && c>3 && c<7){
+				else if (r>5 && c>5){
 					square = 8;
-				}
-				else if (r>6 && c>6){
-					square = 9;
 				}
 				Square s = new Square(r, c, square, count);
 				sList.add(count, s);

@@ -49,7 +49,7 @@ public void setValAndPreset(int val) {
 	
 }
 public void setVal(int val) {
-	if (val>0 && val<10) {
+	if (val>=0 && val<10) {
 		number = val;
 	}
 }
