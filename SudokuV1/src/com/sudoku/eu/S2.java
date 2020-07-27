@@ -316,10 +316,10 @@ public class S2 extends Organiser {
 		String jName = j.getName();
 		int jNum = Integer.parseInt(jName);
 		
-			if() {
+			
 			
 		}
-		}
+		
 		
 		int t = 2;
 		int l = 2;
